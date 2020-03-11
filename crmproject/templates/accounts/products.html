@@ -1,0 +1,55 @@
+{% extends 'accounts/base.html' %}
+<html>
+<head>
+    <title> Products Page</title>
+</head>
+<body>
+{% block content %}
+    <style>
+    table{
+        margin-top: -10px;
+    }
+    body{
+        background-color: lightblue;
+    }
+    </style>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="offset-md-2 col-md-8">
+    {% if products %}
+    <h3 class="text-center ">Available Products</h3>
+    <table class="table table-bordered text-center">
+    <thead class="bg-success text-white">
+    <tr>
+    <th>Products Name</th>
+    <th>Products Price</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Created Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody class="bg-dark text-white">
+    {% for i in products %}
+    <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.price }}</td>
+        <td>{{ i.category }}</td>
+        <td>{{ i.description }}</td>
+        <td>{{ i.order_date }}</td>
+        <td><a href="#"  class="bg-success text-white">Create</a><a href="#" class="bg-danger text-white">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+        <a href="#" class="bg-success text-white">Add Products</a>
+    {% else %}
+        <h1> Products Are Not Available</h1>
+    {% endif %}
+    </div>
+    </div>
+    </div>
+{% endblock %}
+</body>
+</html>
+

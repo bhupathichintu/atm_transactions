@@ -1,0 +1,92 @@
+{% extends 'accounts/base.html' %}
+<html>
+<head>
+    <title> DashBoard Page</title>
+</head>
+<body>
+{% block content %}
+    <br>
+    {% include 'accounts/status.html' %}
+    <br>
+    <style>
+a{
+color: white;
+
+}
+table{
+    font-size: 15px;
+    text-align: center;
+    }
+.card1{
+background-color: deepskyblue;
+}
+    body{
+        background-color: skyblue;
+    }
+    </style>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-5">
+    <div class="card">
+    <div class="card-header bg-success text-white">
+    <h5 class="text-center">Customer Details</h5>
+    </div>
+    <div class="card-body bg-dark">
+    <table class="table table-bordered text-white">
+    <thead>
+    <tr>
+        <th> </th>
+    <th>Name</th>
+        <th>Contact</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in customers %}
+    <tr>
+        <td><a href="{% url 'customer' i.id %}">View</a></td>
+    <td>{{ i.first_name }}</td>
+    <td>{{ i.mobile}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-7">
+    <div class="card">
+    <div class="card-header bg-success text-white">
+    <h5 class="text-center">Order Details</h5>
+    </div>
+    <div class="card-body card1">
+    <table class="table table-bordered">
+    <thead>
+    <tr>
+    <th>Products</th>
+    <th>Customers</th>
+    <th>Price</th>
+    <th>Orders</th>
+    <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in orders %}
+    <tr>
+        <td>{{ i.product.name }}</td>
+        <td>{{ i.customer.first_name }}</td>
+        <td>{{ i.product.price }}</td>
+        <td>{{ i.created_date }}</td>
+        <td>{{ i.status }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+</body>
+</html>
